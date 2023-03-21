@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-col mb-5 w-full;
+}
+
+.input {
+  @apply p-2 rounded-xl bg-primary/10 focus:outline-primary/50 text-base;
+}
