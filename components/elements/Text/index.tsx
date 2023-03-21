@@ -4,7 +4,8 @@ import styles from "./Text.module.css";
 
 type TextProps = {
   children: React.ReactNode;
-  variant?: "jumboTitle" | "jumboSubTitle" | "title" | "subTitle";
+  variant?: "jumboTitle" | "jumboSubTitle" | "title" | "subTitle" | "error";
+  className?: string;
 };
 
 const VARIANT: CustomStyle = {
@@ -12,8 +13,13 @@ const VARIANT: CustomStyle = {
   jumboSubTitle: styles.jumboSubTitle,
   title: styles.title,
   subTitle: styles.subTitle,
+  error: styles.error
 };
 
-export const Text: FC<TextProps> = ({ children, variant = "jumboTitle" }) => {
-  return <h1 className={`${VARIANT[variant]}`}>{children}</h1>;
+export const Text: FC<TextProps> = ({
+  children,
+  variant = "jumboTitle",
+  className,
+}) => {
+  return <h1 className={`${VARIANT[variant]} ${className}`}>{children}</h1>;
 };
