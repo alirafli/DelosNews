@@ -21,6 +21,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@types": ["types"],
+      "@assets/*": ["public/assets/*"],
     },
     "incremental": true
   },

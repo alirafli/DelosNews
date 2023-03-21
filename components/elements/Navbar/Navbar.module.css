@@ -1,0 +1,46 @@
+.container {
+  @apply fixed
+  top-0
+  left-0
+  right-0
+  z-20
+  shadow-xl
+  bg-white/80
+  backdrop-blur-sm
+  p-4
+  hidden
+  justify-center
+  items-center
+  sm:flex;
+}
+
+.mobileContainer {
+  @apply fixed
+  block
+  sm:hidden
+  top-0
+  left-0
+  right-0
+  z-20;
+}
+
+.mobileHeader {
+  @apply flex
+  justify-between
+  items-center
+  transition-all
+  w-full p-5  
+bg-white/80
+  backdrop-blur-sm;
+}
+
+.mobileContent {
+  @apply flex flex-col bg-red-200
+  justify-center
+  items-center
+  transition-all
+  shadow-xl
+  bg-white/80
+  backdrop-blur-sm
+  pb-5;
+}

@@ -11,6 +11,7 @@ export const Meta: FC<HeaderProps> = ({ subTitle = "..." }) => {
       "Get the Best of The New York Times Article with DelosNews: Your One-Stop Shop!",
     keywords: "Delos, Articles, News, Ocean",
   };
+
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,8 +31,4 @@ export const Meta: FC<HeaderProps> = ({ subTitle = "..." }) => {
       <title>DelosNews | {subTitle}</title>
     </Head>
   );
-};
-
-Meta.defaultProps = {
-  subTitle: "...",
 };

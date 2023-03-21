@@ -12,6 +12,6 @@
 }
 
 .subTitle {
-  @apply font-normal text-base tracking-wide;
+  @apply font-medium text-base tracking-wide;
   font-family: 'Raleway';
 }
