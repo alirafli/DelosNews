@@ -11,17 +11,16 @@
   hidden
   justify-center
   items-center
-  sm:flex;
+  md:flex;
 }
 
 .mobileContainer {
   @apply fixed
   block
-  sm:hidden
+  md:hidden
   top-0
   left-0
-  right-0
-  z-20;
+  right-0;
 }
 
 .mobileHeader {
@@ -29,7 +28,8 @@
   justify-between
   items-center
   transition-all
-  w-full p-5  
+  w-full
+  p-5  
 bg-white/80
   backdrop-blur-sm;
 }

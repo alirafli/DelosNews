@@ -2,12 +2,12 @@ import { FC, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MenuToggle, navbarItem, navLink } from "./navbarProperty";
-import { motion, useCycle } from "framer-motion";
+import { motion, useCycle, AnimatePresence } from "framer-motion";
 import LOGO from "@assets/images/logo/logo.svg";
-import { Button, Text } from "@components/elements";
+import { Text, ButtonLink } from "@components/elements";
 import styles from "./Navbar.module.css";
 
-export const Navbar: FC<any> = () => {
+export const Navbar: FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useCycle<boolean>(false, true);
   const containerRef = useRef(null);
 
@@ -33,7 +33,10 @@ export const Navbar: FC<any> = () => {
         </div>
 
         <div className="w-3/12 flex justify-end">
-          <Button>Login</Button>
+          <ButtonLink linkTo="login">Login</ButtonLink>
+          <ButtonLink variant="secondary" linkTo="register">
+            register
+          </ButtonLink>
         </div>
       </div>
 
@@ -41,19 +44,15 @@ export const Navbar: FC<any> = () => {
         initial={false}
         animate={isSidebarOpen ? "open" : "closed"}
         ref={containerRef}
-        className={styles.mobileContainer}
+        className={`${styles.mobileContainer} `}
       >
-        <div
-          className={`${styles.mobileHeader} ${
-            isSidebarOpen ? "shadow-none" : "shadow-xl"
-          }`}
-        >
+        <div className={styles.mobileHeader}>
           <Link href="/">
             <Image src={LOGO} height={24} alt="logo" />
           </Link>
           <MenuToggle toggle={() => setIsSidebarOpen()} />
         </div>
-        
+
         <motion.div
           variants={navbarItem}
           className={`${styles.mobileContent} `}

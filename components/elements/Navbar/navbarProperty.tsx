@@ -13,15 +13,15 @@ const Path = (props: any) => (
 export const navLink = [
   {
     name: "Home",
-    linkTo: "",
+    linkTo: "/",
   },
   {
     name: "Article",
-    linkTo: "",
+    linkTo: "/",
   },
   {
     name: "Lucky Draw",
-    linkTo: "",
+    linkTo: "/",
   },
 ];
 
@@ -62,11 +62,15 @@ export const navbarItem = {
     },
   }),
   closed: {
+    display: "none",
     clipPath: "circle(0px at 0px 0px)",
     transition: {
       type: "spring",
       stiffness: 400,
       damping: 40,
+      display: {
+        delay: 0.2,
+      },
     },
   },
 };
