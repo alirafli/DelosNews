@@ -1,0 +1,24 @@
+.btnContainer {
+  @apply px-5
+  py-3 
+  rounded-xl 
+  text-base
+  font-semibold
+  text-white
+  transition-all
+  mx-2
+  my-1
+  hover:scale-105;
+}
+
+.primary {
+  @apply bg-primary
+  hover:bg-primary-sky;
+}
+
+.secondary {
+  @apply border-primary 
+  border-[3px]
+  text-primary
+  hover:border-primary/80;
+}
