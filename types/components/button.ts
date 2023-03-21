@@ -5,11 +5,11 @@ type DefaultBtnProps = {
   className?: string;
 };
 
-export interface BtnProps extends DefaultBtnProps {
+export type BtnProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: "button" | "submit" | "reset" | undefined;
-}
+} & DefaultBtnProps;
 
-export interface BtnLinkProps extends DefaultBtnProps {
+export type BtnLinkProps = {
   linkTo: string;
-}
+} & DefaultBtnProps;
