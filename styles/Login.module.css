@@ -1,0 +1,11 @@
+.container {
+  @apply bg-primary py-24 px-3;
+}
+
+.boxWrapper {
+  @apply flex flex-col justify-center items-center max-w-md px-10 py-5 mx-auto bg-white rounded-md;
+}
+
+.form {
+  @apply w-full flex flex-col items-center;
+}
