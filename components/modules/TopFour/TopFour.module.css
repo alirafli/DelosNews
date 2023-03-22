@@ -1,0 +1,18 @@
+.container {
+  @apply mb-10;
+}
+
+.textWrapper {
+  @apply flex
+  justify-between
+  items-center;
+}
+
+.children {
+  @apply flex
+  flex-wrap
+  w-full
+  justify-center
+  xl:justify-between
+  items-center;
+}

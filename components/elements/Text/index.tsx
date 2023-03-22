@@ -25,7 +25,7 @@ const VARIANT: CustomStyle = {
 
 export const Text: FC<TextProps> = ({
   children,
-  variant = "jumboTitle",
+  variant = "title",
   className,
 }) => {
   return <h1 className={`${VARIANT[variant]} ${className}`}>{children}</h1>;

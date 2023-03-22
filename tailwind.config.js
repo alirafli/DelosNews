@@ -16,6 +16,9 @@ module.exports = {
         grey: "#3A3A3C",
         "brown-peanut": "#84754D",
       },
+      backgroundImage: {
+        "default-card": "url('/assets/images/default-card.jpg')",
+      },
     },
   },
   plugins: [],
