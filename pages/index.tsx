@@ -3,7 +3,7 @@ import { Button, Meta, Navbar, Text } from "@components/elements";
 
 const Home: NextPage = () => {
   return (
-    <div className="p-28">
+    <div className="p-28 min-h-screen">
       <Meta subTitle="Homepage" />
       Hello World!
       <Button>Sign Up</Button>
@@ -18,30 +18,6 @@ const Home: NextPage = () => {
       <Text variant="subTitle">
         Temukan restoran, bar, cafe terbaik di lokasimu
       </Text>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 };

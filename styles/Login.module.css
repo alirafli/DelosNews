@@ -1,5 +1,5 @@
 .container {
-  @apply bg-primary pt-48 pb-24 px-3;
+  @apply bg-primary pt-40 pb-24 px-3 min-h-screen;
 }
 
 .boxWrapper {
