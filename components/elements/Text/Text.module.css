@@ -12,7 +12,12 @@
 }
 
 .subTitle {
-  @apply font-medium text-base tracking-wide;
+  @apply font-medium text-sm md:text-base tracking-wide;
+  font-family: "Raleway";
+}
+
+.p {
+  @apply font-medium text-xs sm:text-sm tracking-wide;
   font-family: "Raleway";
 }
 

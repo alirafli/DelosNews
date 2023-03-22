@@ -6,34 +6,49 @@ import * as yup from "yup";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import Link from "next/link";
 
-export const loginSchema = yup.object().shape({
+export const registerSchema = yup.object().shape({
+  username: yup.string().min(6).required("Required"),
   email: yup.string().email("Please enter a valid email").required("Required"),
   password: yup.string().min(8).required("Required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match"),
 });
 
-const Login: FC = () => {
+const Register = () => {
   const onSubmit = async (values: LoginParams) => {
     console.log(values);
   };
 
   return (
     <div className={styles.container}>
-      <Meta subTitle="Login" />
+      <Meta subTitle="Register" />
 
       <div className={styles.boxWrapper}>
         <Text variant="jumboSubTitle" className="mb-3">
-          Login
+          Register
         </Text>
 
         <Formik
           initialValues={{
+            username: "",
             email: "",
             password: "",
+            confirmPassword: "",
           }}
-          validationSchema={loginSchema}
+          validationSchema={registerSchema}
           onSubmit={onSubmit}
         >
           <Form className={styles.form}>
+            <Field
+              as={Input}
+              label="Username"
+              name="username"
+              type="text"
+              placeholder="Input your username"
+              error={<ErrorMessage name="username" />}
+            />
+
             <Field
               as={Input}
               label="Email"
@@ -52,13 +67,22 @@ const Login: FC = () => {
               error={<ErrorMessage name="password" />}
             />
 
+            <Field
+              as={Input}
+              label="Comfirm Password"
+              name="confirmPassword"
+              type="password"
+              placeholder="Comfirm your password"
+              error={<ErrorMessage name="confirmPassword" />}
+            />
+
             <Button type="submit">Submit</Button>
           </Form>
         </Formik>
         <Text variant="p">
-          Don&apos;t have an account yet?{" "}
-          <Link href="register" className={styles.registerText}>
-            Register here!
+          have an account?{" "}
+          <Link href="login" className={styles.registerText}>
+            Login here!
           </Link>
         </Text>
       </div>
@@ -66,4 +90,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default Register;

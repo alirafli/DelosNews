@@ -3,7 +3,7 @@ import { Button, Meta, Navbar, Text } from "@components/elements";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className="p-28">
       <Meta subTitle="Homepage" />
       Hello World!
       <Button>Sign Up</Button>
