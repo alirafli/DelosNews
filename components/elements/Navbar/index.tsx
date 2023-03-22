@@ -47,10 +47,19 @@ export const Navbar: FC = () => {
         className={`${styles.mobileContainer} `}
       >
         <div className={styles.mobileHeader}>
-          <Link href="/">
-            <Image src={LOGO} height={24} alt="logo" />
-          </Link>
           <MenuToggle toggle={() => setIsSidebarOpen()} />
+
+          <Link href="/">
+            <Image
+              src={LOGO}
+              height={20}
+              alt="logo"
+              onClick={() => setIsSidebarOpen(0)}
+            />
+          </Link>
+          <div className="flex" onClick={() => setIsSidebarOpen(0)}>
+            <ButtonLink linkTo="login">Login</ButtonLink>
+          </div>
         </div>
 
         <motion.div

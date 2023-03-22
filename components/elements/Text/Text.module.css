@@ -1,14 +1,14 @@
 .jumboTitle {
-  @apply font-semibold text-5xl;
+  @apply font-semibold text-4xl md:text-5xl;
 }
 
 .jumboSubTitle {
-  @apply font-semibold text-3xl;
+  @apply font-semibold text-2xl md:text-3xl;
   font-family: "Raleway";
 }
 
 .title {
-  @apply font-semibold text-2xl;
+  @apply font-semibold text-xl md:text-2xl;
 }
 
 .subTitle {
