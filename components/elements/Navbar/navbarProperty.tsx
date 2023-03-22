@@ -54,6 +54,7 @@ export const MenuToggle = ({ toggle }: any) => (
 
 export const navbarItem = {
   open: (height = 1000) => ({
+    display: "flex",
     clipPath: `circle(${height * 2 + 200}px at 0px 0px)`,
     transition: {
       type: "spring",

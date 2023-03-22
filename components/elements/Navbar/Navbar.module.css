@@ -35,7 +35,7 @@ bg-white/80
 }
 
 .mobileContent {
-  @apply flex flex-col bg-red-200
+  @apply flex-col bg-red-200
   justify-center
   items-center
   transition-all
