@@ -4,7 +4,7 @@
   transition-all
   hover:shadow-2xl
   min-h-[16rem]
-  min-w-[18rem]
+  w-[18rem]
   rounded-md
   m-2;
 }
