@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const [emailedArticle, setEmailedArticle] = useState<ArticleData[]>([]);
   const [sharedArticle, setSharedArticle] = useState<ArticleData[]>([]);
   const [viewedArticle, setViewedArticle] = useState<ArticleData[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
 
   const fetchArticles = async () => {
     try {
@@ -25,8 +25,8 @@ const Home: NextPage = () => {
       const ArticlesShared = await getArticlesShared(7);
       setSharedArticle(ArticlesShared.data.results);
 
-      const ArticlesViewe = await getArticlesViewed(7);
-      setViewedArticle(ArticlesViewe.data.results);
+      const ArticlesViewed = await getArticlesViewed(7);
+      setViewedArticle(ArticlesViewed.data.results);
     } catch (error) {
       console.log(error);
     } finally {
@@ -71,6 +71,7 @@ const Home: NextPage = () => {
                   link={data.url}
                   title={data.title}
                   writer={data.byline}
+                  uri={data.uri}
                   background={data?.media[0]["media-metadata"][2]?.url}
                 />
               );
@@ -81,6 +82,7 @@ const Home: NextPage = () => {
             {sharedArticle.slice(0, 4).map((data, key) => {
               return (
                 <SimpleArticleCard
+                  uri={data.uri}
                   key={key}
                   id={data.id}
                   link={data.url}
@@ -96,6 +98,7 @@ const Home: NextPage = () => {
             {viewedArticle.slice(0, 4).map((data, key) => {
               return (
                 <SimpleArticleCard
+                  uri={data.uri}
                   key={key}
                   id={data.id}
                   link={data.url}

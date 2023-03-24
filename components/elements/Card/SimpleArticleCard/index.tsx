@@ -9,6 +9,7 @@ type SimpleCardprops = {
   background: string;
   id: number;
   link: string;
+  uri: string;
 };
 
 export const SimpleArticleCard: FC<SimpleCardprops> = ({
@@ -17,17 +18,20 @@ export const SimpleArticleCard: FC<SimpleCardprops> = ({
   background,
   id,
   link,
+  uri,
 }) => {
   return (
     <Link
-      href=""
+      href={`article/${id}?uri=${uri}`}
       className={`${styles.container} bg-cover`}
       style={{
         backgroundImage: `url("${background}")`,
       }}
     >
       <div className={`${styles.textWrap} truncate`}>
-        <Text variant="subTitle" className="truncate">{writer}</Text>
+        <Text variant="subTitle" className="truncate">
+          {writer}
+        </Text>
         <Text className="truncate">{title}</Text>
       </div>
     </Link>
