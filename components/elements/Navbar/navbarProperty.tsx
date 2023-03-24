@@ -17,11 +17,11 @@ export const navLink = [
   },
   {
     name: "Article",
-    linkTo: "/",
+    linkTo: "/article",
   },
   {
     name: "Lucky Draw",
-    linkTo: "/",
+    linkTo: "/lucky-draw",
   },
 ];
 

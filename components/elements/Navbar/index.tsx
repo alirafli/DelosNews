@@ -1,8 +1,9 @@
-import { FC, useRef } from "react";
+import { FC, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { MenuToggle, navbarItem, navLink } from "./navbarProperty";
-import { motion, useCycle, AnimatePresence } from "framer-motion";
+import { motion, useCycle } from "framer-motion";
 import LOGO from "@assets/images/logo/logo.svg";
 import { Text, ButtonLink } from "@components/elements";
 import styles from "./Navbar.module.css";
@@ -10,11 +11,12 @@ import styles from "./Navbar.module.css";
 export const Navbar: FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useCycle<boolean>(false, true);
   const containerRef = useRef(null);
+  const { pathname } = useRouter();
 
   return (
     <>
       <div className={styles.container}>
-        <Link href="/" className="w-3/12 ">
+        <Link href="/" className="w-3/12">
           <Image src={LOGO} height={24} alt="logo" />
         </Link>
 
@@ -24,7 +26,13 @@ export const Navbar: FC = () => {
               <Link
                 href={data.linkTo}
                 key={key}
-                className="mx-2 hover:text-primary transition-all"
+                className={`mx-2 hover:text-primary transition-all ${
+                  pathname.includes(data.linkTo) &&
+                  data.name !== "Home" &&
+                  "text-primary"
+                } ${data.name === "Home" && pathname === "/" && "text-primary"}
+                `}
+                onClick={() => console.log(pathname)}
               >
                 <Text variant="subTitle">{data.name}</Text>
               </Link>
@@ -71,7 +79,14 @@ export const Navbar: FC = () => {
               <Link
                 href={data.linkTo}
                 key={key}
-                className="mx-2 hover:text-primary my-3"
+                className={`mx-2 hover:text-primary my-3
+                ${
+                  pathname.includes(data.linkTo) &&
+                  data.name !== "Home" &&
+                  "text-primary"
+                }
+                ${data.name === "Home" && pathname === "/" && "text-primary"}
+                `}
                 onClick={() => setIsSidebarOpen()}
               >
                 <Text variant="subTitle">{data.name}</Text>
