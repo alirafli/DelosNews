@@ -24,6 +24,7 @@
       "@types": ["types"],
       "@assets/*": ["public/assets/*"],
       "@styles/*": ["styles/*"],
+      "@utils": ["utils"],
     },
     "incremental": true
   },
