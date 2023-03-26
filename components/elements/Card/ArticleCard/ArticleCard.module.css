@@ -1,0 +1,24 @@
+.container {
+  @apply shadow-xl
+  hover:scale-105
+  transition-all
+  hover:shadow-2xl
+  min-h-[16rem]
+  md:w-[30rem]
+  w-[18rem]
+  rounded-md
+  m-2;
+}
+
+.textWrap {
+  @apply flex
+  flex-col-reverse
+  bg-gradient-to-t
+  from-black
+  to-transparent
+  text-white
+  px-5
+  py-3
+  min-h-[16rem]
+  rounded-md;
+}
