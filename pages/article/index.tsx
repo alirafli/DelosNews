@@ -1,5 +1,6 @@
 import {
   ArticleCard,
+  Button,
   Meta,
   SearchBar,
   SimpleArticleCard,
@@ -18,6 +19,8 @@ import styles from "@styles/Article.module.css";
 import { Pagination } from "@components/modules/Pagination";
 import { useRouter } from "next/router";
 
+const periodType = [1, 7, 30];
+
 const Article: FC<any> = () => {
   const { query } = useRouter();
   const [term, setTterm] = useState<string>("everything");
@@ -32,6 +35,7 @@ const Article: FC<any> = () => {
 
   const fetchArticles = async (term: string, page: number) => {
     setIsLoading(true);
+
     try {
       if (query.q === "Most Emailed") {
         const ArticlesEmailed = await getArticlesEmailed(period);
@@ -40,7 +44,6 @@ const Article: FC<any> = () => {
 
       if (query.q === "Most Shared") {
         const ArticlesShared = await getArticlesShared(period);
-        console.log(ArticlesShared.data.results[0].media[0]["media-metadata"]);
         setaArticle(ArticlesShared.data.results);
       }
 
@@ -60,8 +63,10 @@ const Article: FC<any> = () => {
     }
   };
 
-  const triggerFetchArticle = (e: React.FormEvent<HTMLInputElement>) => {
+  const triggerFetchArticle = (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
+    console.log(period);
     fetchArticles(term, page);
   };
 
@@ -86,6 +91,31 @@ const Article: FC<any> = () => {
               value={term}
               onSubmit={triggerFetchArticle}
             />
+          )}
+
+          {query.q !== undefined && (
+            <>
+              <Text variant="subTitle" className="mt-5 mb-3">
+                Set article period
+              </Text>
+
+              <div className="flex">
+                {periodType.map((data, key) => {
+                  return (
+                    <Button
+                      key={key}
+                      onClick={(e) => {
+                        setPeriod(data);
+                        triggerFetchArticle(e);
+                      }}
+                      variant={data === period ? "primary" : "secondary"}
+                    >
+                      {data}
+                    </Button>
+                  );
+                })}
+              </div>
+            </>
           )}
         </div>
       </div>
