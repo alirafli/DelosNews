@@ -1,0 +1,3 @@
+.container {
+  @apply mx-auto w-fit flex justify-center flex-wrap mt-10;
+}
