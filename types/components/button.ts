@@ -11,5 +11,6 @@ export type BtnProps = {
 } & DefaultBtnProps;
 
 export type BtnLinkProps = {
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   linkTo: string;
 } & DefaultBtnProps;
