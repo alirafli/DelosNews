@@ -10,6 +10,7 @@ import {
 } from "fetches/article";
 import { useEffect, useState } from "react";
 import { ArticleData } from "@types";
+import Article from "./article";
 
 const Home: NextPage = () => {
   const [emailedArticle, setEmailedArticle] = useState<ArticleData[]>([]);

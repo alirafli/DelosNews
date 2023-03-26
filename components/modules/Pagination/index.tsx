@@ -7,7 +7,6 @@ type PaginationProps = {
   onSubmit: any;
   page: number;
 };
-const pageRange = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export const Pagination: FC<PaginationProps> = ({
   setPage,
@@ -17,6 +16,8 @@ export const Pagination: FC<PaginationProps> = ({
   const scrollToTop = () => {
     window.scrollTo(200, 200);
   };
+
+  const pageRange = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <div className={styles.container}>

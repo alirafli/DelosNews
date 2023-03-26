@@ -1,4 +1,5 @@
 import { Text } from "@components/elements";
+import Link from "next/link";
 import React, { FC } from "react";
 import styles from "./TopFour.module.css";
 
@@ -12,7 +13,9 @@ export const TopFour: FC<TopFourProps> = ({ title, children }) => {
     <div className={styles.container}>
       <div className={styles.textWrapper}>
         <Text>{title}</Text>
-        <Text variant="subTitle">See More</Text>
+        <Link href={`/article?q=${title}`}>
+          <Text variant="subTitle">See More</Text>
+        </Link>
       </div>
 
       <div className={styles.children}>{children}</div>

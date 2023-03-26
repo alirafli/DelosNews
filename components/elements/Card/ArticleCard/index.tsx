@@ -18,7 +18,7 @@ type ArticleProps = {
 export const ArticleCard: FC<ArticleProps> = ({
   title = "...",
   writer = "...",
-  background,
+  background = "",
   id,
   uri,
   sectionName,
