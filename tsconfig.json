@@ -25,6 +25,7 @@
       "@assets/*": ["public/assets/*"],
       "@styles/*": ["styles/*"],
       "@utils": ["utils"],
+      "@hooks": ["hooks"],
     },
     "incremental": true
   },
