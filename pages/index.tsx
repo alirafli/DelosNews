@@ -69,7 +69,6 @@ const Home: NextPage = () => {
                 <SimpleArticleCard
                   key={key}
                   id={data.id}
-                  link={data.url}
                   title={data.title}
                   writer={data.byline}
                   uri={data.uri}
@@ -86,7 +85,6 @@ const Home: NextPage = () => {
                   uri={data.uri}
                   key={key}
                   id={data.id}
-                  link={data.url}
                   title={data.title}
                   writer={data.byline}
                   background={data?.media[0]["media-metadata"][2]?.url}
@@ -102,7 +100,6 @@ const Home: NextPage = () => {
                   uri={data.uri}
                   key={key}
                   id={data.id}
-                  link={data.url}
                   title={data.title}
                   writer={data.byline}
                   background={data?.media[0]["media-metadata"][2]?.url}

@@ -1,0 +1,11 @@
+.searchWrapper {
+  @apply bg-default-card bg-cover min-h-[20rem] md:min-h-[35rem] mb-10 bg-center;
+}
+
+.searchContent {
+  @apply bg-gradient-to-t from-black to-transparent min-h-[20rem] md:min-h-[35rem] py-28 flex justify-center items-center flex-col text-white pt-40;
+}
+
+.cardWrapper {
+  @apply flex flex-wrap justify-center gap-0 md:gap-10 px-5 xl:px-20;
+}

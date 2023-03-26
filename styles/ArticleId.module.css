@@ -1,0 +1,19 @@
+.container {
+  @apply pt-28 min-h-screen px-0 md:px-10 pb-10;
+}
+
+.wrapper {
+  @apply flex flex-col md:flex-row items-center md:items-start;
+}
+
+.content {
+  @apply max-w-[45rem] px-5;
+}
+
+.dateWriterWrapper {
+  @apply flex mb-2 justify-center md:justify-start;
+}
+
+.abstract {
+  @apply text-justify md:text-left;
+}

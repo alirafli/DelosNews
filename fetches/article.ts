@@ -23,7 +23,7 @@ export const getArticlesViewed = (period: number): APIResponse<ArticleData> => {
 
 export const getArticleDetail = (
   uri?: string | string[]
-): APIResponse<ArticleData> => {
+): APIResponse<SingleArticleData> => {
   return api.get(
     `search/v2/articlesearch.json?fq=_id%3A"${uri}"&api-key=${process.env.NEXT_PUBLIC_NYTIMES_API_KEY}`
   );

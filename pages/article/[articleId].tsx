@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getArticleDetail } from "fetches/article";
-import { ArticleData, SingleArticleData } from "@types";
+import { SingleArticleData } from "@types";
 import { Meta, Text } from "@components/elements";
 import Image from "next/image";
 import { readableDate } from "@utils";
+import styles from "@styles/ArticleId.module.css";
+
 
 const ArticleDetail = () => {
   const router = useRouter();
@@ -14,7 +16,6 @@ const ArticleDetail = () => {
   const fetchArticleDetail = async (uri?: string | string[]) => {
     try {
       const ArticleDetail = await getArticleDetail(uri);
-      console.log(ArticleDetail.data.response.docs[0]);
       setArticle(ArticleDetail.data.response.docs[0]);
     } catch (error) {
       console.log(error);
@@ -30,10 +31,10 @@ const ArticleDetail = () => {
 
   if (isLoading) return <h1 className="pt-28 min-h-screen">loading...</h1>;
   return (
-    <div className="pt-28 min-h-screen px-0 md:px-10 pb-10">
+    <div className={styles.container}>
       <Meta subTitle="article detail" />
 
-      <div className="flex flex-col md:flex-row items-center md:items-start">
+      <div className={styles.wrapper}>
         <Image
           src={`https://static01.nyt.com/${article?.multimedia[0].url}`}
           alt="Picture of the author"
@@ -41,15 +42,19 @@ const ArticleDetail = () => {
           height={400}
           className="mb-10"
         />
-        <div className="max-w-[45rem] px-5">
-          <Text className="text-center md:text-left">{article?.headline.main}</Text>
-          <div className="flex mb-2 justify-center md:justify-start">
+        <div className={styles.content}>
+          <Text className="text-center md:text-left">
+            {article?.headline.main}
+          </Text>
+          <div className={styles.dateWriterWrapper}>
             <Text variant="p">{readableDate(article?.pub_date)}</Text>
             <Text variant="p" className="mx-5">
               {article?.byline.original}
             </Text>
           </div>
-          <Text variant="subTitle" className="text-justify md:text-left">abstract: {article?.abstract}</Text>
+          <Text variant="subTitle" className={styles.abstract}>
+            abstract: {article?.abstract}
+          </Text>
         </div>
       </div>
     </div>
