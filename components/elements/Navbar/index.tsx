@@ -35,7 +35,6 @@ export const Navbar: FC = () => {
                   "text-primary"
                 } ${data.name === "Home" && pathname === "/" && "text-primary"}
                 `}
-                onClick={() => console.log(pathname)}
               >
                 <Text variant="subTitle">{data.name}</Text>
               </Link>

@@ -23,8 +23,18 @@ export const getArticlesViewed = (period: number): APIResponse<ArticleData> => {
 
 export const getArticleDetail = (
   uri?: string | string[]
-): APIResponse<SingleArticleData> => {
+): APIResponse<ArticleData> => {
   return api.get(
     `search/v2/articlesearch.json?fq=_id%3A"${uri}"&api-key=${process.env.NEXT_PUBLIC_NYTIMES_API_KEY}`
+  );
+};
+
+export const getArticleSearch = (
+  term?: string,
+  page?: number
+): APIResponse<SingleArticleData> => {
+  let newPage = page ? page : 0;
+  return api.get(
+    `search/v2/articlesearch.json?q=${term}&page=${newPage}&api-key=${process.env.NEXT_PUBLIC_NYTIMES_API_KEY}`
   );
 };

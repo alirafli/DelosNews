@@ -8,7 +8,6 @@ type SimpleCardprops = {
   writer: string;
   background: string;
   id: number;
-  link: string;
   uri: string;
 };
 
@@ -17,7 +16,6 @@ export const SimpleArticleCard: FC<SimpleCardprops> = ({
   writer = "...",
   background,
   id,
-  link,
   uri,
 }) => {
   return (

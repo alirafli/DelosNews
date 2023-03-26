@@ -4,6 +4,7 @@ export type ArticleData = {
   url: string;
   uri: string;
   id: number;
+  web_url: string;
   abstract: string;
   published_date: string;
   pub_date: string;
@@ -33,6 +34,9 @@ export type ArticleData = {
 };
 
 export type SingleArticleData = {
+  section_name: string;
+  type_of_material: string;
+  pub_date: string;
   byline: {
     original: string;
   };
