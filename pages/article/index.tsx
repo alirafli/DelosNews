@@ -127,7 +127,6 @@ const Article: FC<any> = () => {
           setPage={setPage}
           onSubmit={triggerFetchArticle}
           page={page}
-          type={query.q}
         />
       )}
     </div>
