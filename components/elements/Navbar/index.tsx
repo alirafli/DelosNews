@@ -19,11 +19,11 @@ export const Navbar: FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <Link href="/" className="w-3/12">
+        <Link href="/" className={styles.imageContainer}>
           <Image src={LOGO} height={24} alt="logo" />
         </Link>
 
-        <div className="flex w-6/12 justify-center ">
+        <div className={styles.navlinkContainer}>
           {navLink.map((data, key) => {
             return (
               <Link
@@ -44,8 +44,9 @@ export const Navbar: FC = () => {
         </div>
 
         {user ? (
-          <>
+          <div className={styles.btnContainer}>
             <Button
+              variant="secondary"
               onClick={() => {
                 logout();
                 router.push("/login");
@@ -60,9 +61,9 @@ export const Navbar: FC = () => {
             >
               Profile
             </Button>
-          </>
+          </div>
         ) : (
-          <div className="w-3/12 flex justify-end">
+          <div className={styles.btnContainer}>
             <ButtonLink linkTo="/login">Login</ButtonLink>
             <ButtonLink variant="secondary" linkTo="/register">
               register
@@ -91,8 +92,10 @@ export const Navbar: FC = () => {
           <div className="flex" onClick={() => setIsSidebarOpen(0)}>
             {user ? (
               <Button
+                variant="secondary"
                 onClick={() => {
                   logout();
+                  setIsSidebarOpen(0);
                   router.push("/login");
                 }}
               >
@@ -108,6 +111,16 @@ export const Navbar: FC = () => {
           variants={navbarItem}
           className={`${styles.mobileContent} `}
         >
+          {user && (
+            <Button
+              onClick={() => {
+                setIsSidebarOpen(0);
+                router.push("/profile");
+              }}
+            >
+              Profile
+            </Button>
+          )}
           {navLink.map((data, key) => {
             return (
               <Link

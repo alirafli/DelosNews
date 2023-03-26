@@ -2,7 +2,7 @@ import { FC } from "react";
 import { CustomStyle, BtnLinkProps, BtnProps } from "@types";
 import Link from "next/link";
 import styles from "./Button.module.css";
-import {Text} from '@components/elements'
+import { Text } from "@components/elements";
 
 const VARIANT: CustomStyle = {
   primary: styles.primary,
@@ -36,6 +36,7 @@ export const ButtonLink: FC<BtnLinkProps> = ({
   fullWidth = false,
   className = "",
   linkTo = "/",
+  onClick,
 }) => {
   return (
     <Link
@@ -43,6 +44,7 @@ export const ButtonLink: FC<BtnLinkProps> = ({
       className={`${styles.btnContainer} ${VARIANT[variant]} ${
         fullWidth ? "w-full" : "w-fit"
       } ${className}`}
+      onClick={onClick}
     >
       <Text variant="subTitle">{children}</Text>
     </Link>

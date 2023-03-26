@@ -4,12 +4,14 @@
   left-0
   right-0
   z-20
+  w-screen
   shadow-xl
   bg-white/90
   backdrop-blur-sm
   p-4
   hidden
-  justify-center
+  justify-between
+  flex-grow
   items-center
   md:flex;
 }
@@ -44,4 +46,16 @@
   bg-white/80
   backdrop-blur-sm
   pb-5;
+}
+
+.imageContainer {
+  @apply w-4/12;
+}
+
+.navlinkContainer {
+  @apply flex w-4/12 justify-center;
+}
+
+.btnContainer {
+  @apply w-4/12 flex justify-end
 }
