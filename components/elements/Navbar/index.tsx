@@ -1,14 +1,17 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { MenuToggle, navbarItem, navLink } from "./navbarProperty";
 import { motion, useCycle } from "framer-motion";
 import LOGO from "@assets/images/logo/logo.svg";
-import { Text, ButtonLink } from "@components/elements";
+import { Text, ButtonLink, Button } from "@components/elements";
 import styles from "./Navbar.module.css";
+import { useAuth } from "context/AuthContext";
 
 export const Navbar: FC = () => {
+  const { user, logout } = useAuth();
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useCycle<boolean>(false, true);
   const containerRef = useRef(null);
   const { pathname } = useRouter();
@@ -40,12 +43,32 @@ export const Navbar: FC = () => {
           })}
         </div>
 
-        <div className="w-3/12 flex justify-end">
-          <ButtonLink linkTo="login">Login</ButtonLink>
-          <ButtonLink variant="secondary" linkTo="register">
-            register
-          </ButtonLink>
-        </div>
+        {user ? (
+          <>
+            <Button
+              onClick={() => {
+                logout();
+                router.push("/login");
+              }}
+            >
+              Logout
+            </Button>
+            <Button
+              onClick={() => {
+                router.push("/profile");
+              }}
+            >
+              Profile
+            </Button>
+          </>
+        ) : (
+          <div className="w-3/12 flex justify-end">
+            <ButtonLink linkTo="/login">Login</ButtonLink>
+            <ButtonLink variant="secondary" linkTo="/register">
+              register
+            </ButtonLink>
+          </div>
+        )}
       </div>
 
       <motion.nav
@@ -66,7 +89,18 @@ export const Navbar: FC = () => {
             />
           </Link>
           <div className="flex" onClick={() => setIsSidebarOpen(0)}>
-            <ButtonLink linkTo="login">Login</ButtonLink>
+            {user ? (
+              <Button
+                onClick={() => {
+                  logout();
+                  router.push("/login");
+                }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <ButtonLink linkTo="/login">Login</ButtonLink>
+            )}
           </div>
         </div>
 
