@@ -55,7 +55,8 @@ const Home: NextPage = () => {
           alt="jumbotron"
           src={JUMBOTRON}
           width={350}
-          className="px-5 md:px-0 mb-7 md:mb-0 "
+          priority
+          className="px-5 md:px-0 mb-7 md:mb-0 h-auto"
         />
       </div>
       {isLoading ? (
