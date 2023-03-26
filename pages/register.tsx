@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Button, Input, Meta, Text } from "@components/elements";
 import styles from "@styles/Login.module.css";
 import { RegisterParams } from "@types";
@@ -21,14 +21,17 @@ export const registerSchema = yup.object().shape({
 const Register = () => {
   const { register } = useAuth();
   const router = useRouter();
-
+  const [isLoading, setisLoading] = useState(false);
   const onSubmit = async (values: RegisterParams) => {
     try {
+      setisLoading(true);
       await register(values.email, values.password);
 
       router.push("/");
     } catch (error) {
       console.log(error);
+    } finally {
+      setisLoading(false);
     }
 
     console.log(values);
@@ -91,7 +94,9 @@ const Register = () => {
                 error={<ErrorMessage name="confirmPassword" />}
               />
 
-              <Button type="submit">Submit</Button>
+              <Button type="submit" isLoading={isLoading} >
+                Submit
+              </Button>
             </Form>
           </Formik>
           <Text variant="p">

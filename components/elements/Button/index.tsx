@@ -3,6 +3,8 @@ import { CustomStyle, BtnLinkProps, BtnProps } from "@types";
 import Link from "next/link";
 import styles from "./Button.module.css";
 import { Text } from "@components/elements";
+import SPIN from "@assets/icons/half-circle.png";
+import Image from "next/image";
 
 const VARIANT: CustomStyle = {
   primary: styles.primary,
@@ -16,6 +18,7 @@ export const Button: FC<BtnProps> = ({
   className = "",
   type = "button",
   onClick,
+  isLoading = false,
 }) => {
   return (
     <button
@@ -24,8 +27,19 @@ export const Button: FC<BtnProps> = ({
       className={`${styles.btnContainer} ${VARIANT[variant]} ${
         fullWidth ? "w-full" : "w-fit"
       } ${className}`}
+      disabled={isLoading}
     >
-      <p>{children}</p>
+      {isLoading ? (
+        <Image
+          src={SPIN}
+          alt="loading..."
+          width={20}
+          height={20}
+          className="animate-spin"
+        />
+      ) : (
+        <Text variant="subTitle">{children}</Text>
+      )}
     </button>
   );
 };

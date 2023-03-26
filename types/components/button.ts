@@ -1,8 +1,9 @@
 type DefaultBtnProps = {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "loading";
   fullWidth?: boolean;
   className?: string;
+  isLoading?: boolean | undefined;
 };
 
 export type BtnProps = {

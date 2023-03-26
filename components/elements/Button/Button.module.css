@@ -9,18 +9,17 @@
   text-white
   transition-all
   mx-2
-  my-1
-  hover:scale-105;
+  my-1;
 }
 
 .primary {
   @apply bg-primary
-  hover:bg-primary-sky;
+  hover:bg-primary-sky hover:scale-105;
 }
 
 .secondary {
   @apply border-primary 
   border-[3px]
   text-primary
-  hover:border-primary/80;
+  hover:border-primary/80 hover:scale-105;
 }

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { Button, Input, Meta, Text } from "@components/elements";
 import styles from "@styles/Login.module.css";
 import { LoginParams } from "@types";
@@ -17,12 +17,17 @@ export const loginSchema = yup.object().shape({
 const Login: FC = () => {
   const { login } = useAuth();
   const router = useRouter();
+  const [isLoading, setisLoading] = useState(false);
+
   const onSubmit = async (values: LoginParams) => {
     try {
+      setisLoading(true);
       await login(values.email, values.password);
       router.push("/");
     } catch (error) {
       console.log(error);
+    } finally {
+      setisLoading(false);
     }
 
     // console.log(values);
@@ -65,7 +70,9 @@ const Login: FC = () => {
                 error={<ErrorMessage name="password" />}
               />
 
-              <Button type="submit">Submit</Button>
+              <Button type="submit" isLoading={isLoading}>
+                Submit
+              </Button>
             </Form>
           </Formik>
           <Text variant="p">
