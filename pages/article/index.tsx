@@ -66,7 +66,7 @@ const Article: FC<any> = () => {
   const triggerFetchArticle = (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(period);
+    console.log(article);
     fetchArticles(term, page);
   };
 
@@ -124,6 +124,11 @@ const Article: FC<any> = () => {
           <Text>load data...</Text>
         ) : (
           <div className={styles.cardWrapper}>
+            {article.length === 0 && (
+              <Text variant="jumboSubTitle">
+                0 article, you can search another title!
+              </Text>
+            )}
             {article.map((data, key) => {
               return (
                 <ArticleCard
@@ -156,13 +161,14 @@ const Article: FC<any> = () => {
           </div>
         )}
       </div>
-      {query.q === undefined && (
-        <Pagination
-          setPage={setPage}
-          onSubmit={triggerFetchArticle}
-          page={page}
-        />
-      )}
+      {query.q === undefined &&
+        (article.length !== 0 && (
+          <Pagination
+            setPage={setPage}
+            onSubmit={triggerFetchArticle}
+            page={page}
+          />
+        ))}
     </div>
   );
 };
