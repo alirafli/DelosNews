@@ -28,7 +28,6 @@ const Register = () => {
       await register(values.email, values.password, values.username);
 
       await addUserDocument(values.email, values.username);
-      console.log("Document written with ID: ", addUserDocument.id);
     } catch (error) {
       console.log(error);
     } finally {

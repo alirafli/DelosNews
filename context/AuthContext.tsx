@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   UserCredential,
+  updateProfile,
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
 import { user } from "@types";
@@ -31,7 +32,6 @@ const AuthContext = createContext<AuthContextType>({
     uid: "",
     username: "",
     email: "",
-    password: "",
     coin: 0,
     ticket: 0,
   },
@@ -48,7 +48,6 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     uid: "",
     username: "",
     email: "",
-    password: "",
     coin: 0,
     ticket: 0,
   });
@@ -58,10 +57,11 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     const unsubscribe = onAuthStateChanged(auth, (User) => {
       if (User) {
         setUser({
-          ...user,
+          username: User.displayName,
           uid: User.uid,
           email: User.email,
           coin: 100000,
+          ticket: 0,
         });
       } else {
         setUser(null);
@@ -70,6 +70,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     });
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addUserDocument = (email: string, name: string) => {
@@ -82,11 +83,8 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
   const register = (email: string, password: string, userName: string) => {
     return createUserWithEmailAndPassword(auth, email, password).then(
       (User) => {
-        setUser({
-          uid: User.user.uid,
-          email: User.user.email,
-          username: userName,
-          coin: 100000,
+        updateProfile(User.user, {
+          displayName: userName,
         });
       }
     );
