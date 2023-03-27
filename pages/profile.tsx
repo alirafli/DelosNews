@@ -7,20 +7,30 @@ import React from "react";
 const Profile = () => {
   const router = useRouter();
   const { user, logout } = useAuth();
-  console.log(user);
+
   return (
     <ProtectedRoute>
       <div className="pt-28 px-2 md:px-20 min-h-screen pb-10">
         <Meta subTitle="profile" />
         <div className="flex flex-col justify-center items-center py-10">
-          <Text variant="title">username</Text>
-          <Text className="text-primary mb-8">{user?.username}</Text>
-          <Text variant="title">email</Text>
-          <Text className="text-primary mb-8">{user?.email}</Text>
-          <Text>coin</Text>
-          <Text className="text-primary mb-8">
-            {user?.coin?.toLocaleString("en-US")}
-          </Text>
+          <div className="flex gap-1 md:gap-32">
+            <div className="flex flex-col">
+              <Text variant="title">Username</Text>
+              <Text className="text-primary mb-8">{user?.username}</Text>
+
+              <Text variant="title">Email</Text>
+              <Text className="text-primary mb-8">{user?.email}</Text>
+            </div>{" "}
+            <div className="flex flex-col">
+              <Text>Coin</Text>
+              <Text className="text-primary mb-8">
+                {user?.coin?.toLocaleString("en-US")}
+              </Text>
+
+              <Text>Ticket</Text>
+              <Text className="text-primary mb-5">{user?.ticket}</Text>
+            </div>
+          </div>
           <Button
             variant="secondary"
             onClick={() => {
