@@ -44,9 +44,6 @@ export const Navbar: FC = () => {
 
         {user ? (
           <div className={styles.btnContainer}>
-            <Text variant="subTitle">
-              your coin: {user.coin?.toLocaleString("en-US")}
-            </Text>
             <Button
               onClick={() => {
                 router.push("/profile");

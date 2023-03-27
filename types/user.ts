@@ -1,8 +1,8 @@
 export type user = {
-  uid: string;
+  uid?: string;
   username?: string | null;
-  email: string | null;
+  email?: string | null;
   password?: string;
-  coin?: number;
-  ticket?: number;
+  coin?: number | undefined;
+  ticket?: number | undefined;
 };

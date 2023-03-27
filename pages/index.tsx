@@ -33,7 +33,6 @@ const Home: NextPage = () => {
       setIsLoading(false);
     }
   };
-console.log("first")
   useEffect(() => {
     setIsLoading(true);
     fetchArticles();

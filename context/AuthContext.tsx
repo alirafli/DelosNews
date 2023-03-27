@@ -6,10 +6,11 @@ import {
   signOut,
   UserCredential,
   updateProfile,
+  getAuth,
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
 import { user } from "@types";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, getDocs } from "firebase/firestore";
 
 type AuthContextType = {
   user: user | null;
@@ -21,6 +22,9 @@ type AuthContextType = {
   ) => Promise<UserCredential | void>;
   logout: () => Promise<UserCredential | void>;
   addUserDocument?: any;
+  userBuyArticle?: any;
+  getUserDataByEmail?: any;
+  getUserArticle?: any;
 };
 
 type AuthProps = {
@@ -39,6 +43,9 @@ const AuthContext = createContext<AuthContextType>({
   register: () => Promise.resolve(),
   logout: () => Promise.resolve(),
   addUserDocument: () => Promise.resolve(),
+  userBuyArticle: () => {},
+  getUserDataByEmail: () => Promise.resolve(),
+  getUserArticle: () => Promise.resolve(),
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -76,7 +83,57 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
   const addUserDocument = (email: string, name: string) => {
     return addDoc(collection(firestore, "users"), {
       email: email,
-      displayName: name,
+      username: name,
+      coin: 100000,
+      ticket: 0,
+    });
+  };
+
+  const getUserDataByEmail = async (email: string) => {
+    const colRef = collection(firestore, "users");
+
+    const snapshot = await getDocs(colRef);
+
+    const docs = snapshot.docs.map((doc) => {
+      const data = doc.data();
+
+      return data;
+    });
+    return docs.filter((e) => e.email === email);
+  };
+
+  const getUserArticle = async (email: string) => {
+    const colRef = collection(firestore, "buy-article");
+
+    const snapshot = await getDocs(colRef);
+
+    const docs = snapshot.docs.map((doc) => {
+      const data = doc.data();
+
+      return data;
+    });
+    return docs.filter((e) => e.email === email);
+  };
+
+  const userBuyArticle = (
+    email: string,
+    title: string,
+    link: string,
+    price: number,
+    coin: number,
+    ticket: number
+  ) => {
+    addDoc(collection(firestore, "users"), {
+      email: email,
+      username: name,
+      coin: coin - price,
+      ticket: ticket + 1,
+    });
+
+    return addDoc(collection(firestore, "buy-article"), {
+      link: link,
+      title: title,
+      email: email,
     });
   };
 
@@ -101,7 +158,16 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, login, register, logout, addUserDocument }}
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        addUserDocument,
+        userBuyArticle,
+        getUserDataByEmail,
+        getUserArticle,
+      }}
     >
       {isLoading ? null : children}
     </AuthContext.Provider>
