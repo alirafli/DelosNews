@@ -21,9 +21,11 @@ export const SimpleArticleCard: FC<SimpleCardprops> = ({
   return (
     <Link
       href={`article/${id}?uri=${uri}`}
-      className={`${styles.container} bg-cover`}
+      className={`${styles.container} bg-cover ${
+        !background && "bg-default-card"
+      }`}
       style={{
-        backgroundImage: `url("${background}")`,
+        backgroundImage: `${background && `url("${background}")`}`,
       }}
     >
       <div className={`${styles.textWrap} truncate`}>
