@@ -23,7 +23,7 @@ const periodType = [1, 7, 30];
 
 const Article: FC<any> = () => {
   const { query } = useRouter();
-  const [term, setTterm] = useState<string>("everything");
+  const [term, setTterm] = useState<string>("");
   const [article, setaArticle] = useState<SingleArticleData[]>([]);
   const [page, setPage] = useState<number>(0);
   const [period, setPeriod] = useState<number>(1);
@@ -65,13 +65,12 @@ const Article: FC<any> = () => {
 
   const triggerFetchArticle = (e: any) => {
     e.preventDefault();
-    setIsLoading(true);
-    console.log(article);
+    console.log(page)
     fetchArticles(term, page);
   };
 
   useEffectOnce(() => {
-    fetchArticles(term, 0);
+    fetchArticles(term, page);
   });
 
   return (
@@ -135,7 +134,11 @@ const Article: FC<any> = () => {
                   key={key}
                   id={query.q === undefined ? "detail" : data.id.toString()}
                   title={
-                    query.q === undefined ? data.headline.main : data.title
+                    query.q === undefined
+                      ? data.headline
+                        ? data.headline.main
+                        : ""
+                      : data.title
                   }
                   writer={
                     query.q === undefined ? data.byline.original : data.byline
@@ -143,7 +146,7 @@ const Article: FC<any> = () => {
                   uri={data.uri}
                   background={
                     query.q === undefined
-                      ? data?.multimedia[0]
+                      ? data?.multimedia
                         ? `https://static01.nyt.com/${data?.multimedia[0]?.url}`
                         : ""
                       : data?.media[0]
@@ -161,14 +164,13 @@ const Article: FC<any> = () => {
           </div>
         )}
       </div>
-      {query.q === undefined &&
-        (article.length !== 0 && (
-          <Pagination
-            setPage={setPage}
-            onSubmit={triggerFetchArticle}
-            page={page}
-          />
-        ))}
+      {query.q === undefined && article.length !== 0 && (
+        <Pagination
+          setPage={setPage}
+          onSubmit={triggerFetchArticle}
+          page={page}
+        />
+      )}
     </div>
   );
 };

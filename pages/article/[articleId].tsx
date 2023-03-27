@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getArticleDetail } from "fetches/article";
 import { SingleArticleData } from "@types";
-import { Meta, Text } from "@components/elements";
+import { Button, Meta, Text } from "@components/elements";
 import Image from "next/image";
-import { readableDate } from "@utils";
+import { getDayMonthYear, getPrice, readableDate } from "@utils";
 import styles from "@styles/ArticleId.module.css";
 import DEFAULTIMAGE from "@assets/images/default-card.jpg";
 
@@ -13,10 +13,16 @@ const ArticleDetail = () => {
   const { uri } = router.query;
   const [article, setArticle] = useState<SingleArticleData>();
   const [isLoading, setIsLoading] = useState<Boolean>(false);
+  const [articleDate, setArticleDate] = useState<any>("");
+
+  const { day, month, year } = getDayMonthYear(articleDate);
+  const getArticlePrice = getPrice(day, month, year);
+
   const fetchArticleDetail = async (uri?: string | string[]) => {
     try {
       const ArticleDetail = await getArticleDetail(uri);
       setArticle(ArticleDetail.data.response.docs[0]);
+      setArticleDate(ArticleDetail.data.response.docs[0].pub_date);
     } catch (error) {
       console.log(error);
     } finally {
@@ -59,6 +65,12 @@ const ArticleDetail = () => {
           <Text variant="subTitle" className={styles.abstract}>
             abstract: {article?.abstract}
           </Text>
+
+          <div className="mx-auto w-fit">
+            <Button>
+              Buy this article for <span className="font-bold">{getArticlePrice.output}</span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

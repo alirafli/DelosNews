@@ -15,5 +15,5 @@
 }
 
 .abstract {
-  @apply text-justify md:text-left;
+  @apply text-justify md:text-left mb-5;
 }
