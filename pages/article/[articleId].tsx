@@ -6,7 +6,7 @@ import { Meta, Text } from "@components/elements";
 import Image from "next/image";
 import { readableDate } from "@utils";
 import styles from "@styles/ArticleId.module.css";
-
+import DEFAULTIMAGE from "@assets/images/default-card.jpg";
 
 const ArticleDetail = () => {
   const router = useRouter();
@@ -36,7 +36,11 @@ const ArticleDetail = () => {
 
       <div className={styles.wrapper}>
         <Image
-          src={`https://static01.nyt.com/${article?.multimedia[0].url}`}
+          src={
+            article?.multimedia[0]
+              ? `https://static01.nyt.com/${article?.multimedia[0].url}`
+              : DEFAULTIMAGE
+          }
           alt="Picture of the author"
           width={400}
           height={400}

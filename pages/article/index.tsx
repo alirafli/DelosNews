@@ -138,7 +138,9 @@ const Article: FC<any> = () => {
                   uri={data.uri}
                   background={
                     query.q === undefined
-                      ? `https://static01.nyt.com/${data?.multimedia[0]?.url}`
+                      ? data?.multimedia[0]
+                        ? `https://static01.nyt.com/${data?.multimedia[0]?.url}`
+                        : ""
                       : data?.media[0]
                       ? data?.media[0]["media-metadata"][2]?.url
                       : ""
