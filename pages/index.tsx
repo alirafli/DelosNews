@@ -72,7 +72,11 @@ const Home: NextPage = () => {
                   title={data.title}
                   writer={data.byline}
                   uri={data.uri}
-                  background={data?.media[0]["media-metadata"][2]?.url}
+                  background={
+                    data?.media[0]
+                      ? data?.media[0]["media-metadata"][2]?.url
+                      : ""
+                  }
                 />
               );
             })}
@@ -81,19 +85,18 @@ const Home: NextPage = () => {
           <TopFour title="Most Shared">
             {sharedArticle.slice(0, 4).map((data, key) => {
               return (
-                <div key={key}>
-                  <SimpleArticleCard
-                    uri={data.uri}
-                    id={data.id}
-                    title={data.title}
-                    writer={data.byline}
-                    background={
-                      data?.media[0]
-                        ? data?.media[0]["media-metadata"][2]?.url
-                        : ""
-                    }
-                  />
-                </div>
+                <SimpleArticleCard
+                  key={key}
+                  uri={data.uri}
+                  id={data.id}
+                  title={data.title}
+                  writer={data.byline}
+                  background={
+                    data?.media[0]
+                      ? data?.media[0]["media-metadata"][2]?.url
+                      : ""
+                  }
+                />
               );
             })}
           </TopFour>
@@ -107,7 +110,11 @@ const Home: NextPage = () => {
                   id={data.id}
                   title={data.title}
                   writer={data.byline}
-                  background={data?.media[0]["media-metadata"][2]?.url}
+                  background={
+                    data?.media[0]
+                      ? data?.media[0]["media-metadata"][2]?.url
+                      : ""
+                  }
                 />
               );
             })}
