@@ -44,15 +44,9 @@ export const Navbar: FC = () => {
 
         {user ? (
           <div className={styles.btnContainer}>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                logout();
-                router.push("/login");
-              }}
-            >
-              Logout
-            </Button>
+            <Text variant="subTitle">
+              your coin: {user.coin?.toLocaleString("en-US")}
+            </Text>
             <Button
               onClick={() => {
                 router.push("/profile");
@@ -91,14 +85,12 @@ export const Navbar: FC = () => {
           <div className="flex" onClick={() => setIsSidebarOpen(0)}>
             {user ? (
               <Button
-                variant="secondary"
                 onClick={() => {
-                  logout();
                   setIsSidebarOpen(0);
-                  router.push("/login");
+                  router.push("/profile");
                 }}
               >
-                Logout
+                Profile
               </Button>
             ) : (
               <ButtonLink linkTo="/login">Login</ButtonLink>
@@ -112,12 +104,14 @@ export const Navbar: FC = () => {
         >
           {user && (
             <Button
+              variant="secondary"
               onClick={() => {
+                logout();
                 setIsSidebarOpen(0);
-                router.push("/profile");
+                router.push("/login");
               }}
             >
-              Profile
+              Logout
             </Button>
           )}
           {navLink.map((data, key) => {

@@ -81,10 +81,9 @@ const Home: NextPage = () => {
           <TopFour title="Most Shared">
             {sharedArticle.slice(0, 4).map((data, key) => {
               return (
-                <>
+                <div key={key}>
                   <SimpleArticleCard
                     uri={data.uri}
-                    key={key}
                     id={data.id}
                     title={data.title}
                     writer={data.byline}
@@ -94,7 +93,7 @@ const Home: NextPage = () => {
                         : ""
                     }
                   />
-                </>
+                </div>
               );
             })}
           </TopFour>

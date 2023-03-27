@@ -57,5 +57,5 @@
 }
 
 .btnContainer {
-  @apply w-4/12 flex justify-end
+  @apply w-4/12 flex justify-end items-center pr-5
 }
