@@ -4,4 +4,5 @@ export type LoginParams = {
 };
 
 export type RegisterParams = {
+  username: string;
 } & LoginParams;

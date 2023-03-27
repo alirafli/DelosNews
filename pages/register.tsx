@@ -19,18 +19,20 @@ export const registerSchema = yup.object().shape({
 });
 
 const Register = () => {
-  const { register } = useAuth();
+  const { register, addUserDocument } = useAuth();
   const router = useRouter();
   const [isLoading, setisLoading] = useState(false);
   const onSubmit = async (values: RegisterParams) => {
     try {
       setisLoading(true);
-      await register(values.email, values.password);
+      await register(values.email, values.password, values.username);
 
-      router.push("/");
+      await addUserDocument(values.email, values.username);
+      console.log("Document written with ID: ", addUserDocument.id);
     } catch (error) {
       console.log(error);
     } finally {
+      router.push("/");
       setisLoading(false);
     }
 
@@ -94,7 +96,7 @@ const Register = () => {
                 error={<ErrorMessage name="confirmPassword" />}
               />
 
-              <Button type="submit" isLoading={isLoading} >
+              <Button type="submit" isLoading={isLoading}>
                 Submit
               </Button>
             </Form>
