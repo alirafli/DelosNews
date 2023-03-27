@@ -17,12 +17,7 @@ const ArticleDetail = () => {
   const [article, setArticle] = useState<SingleArticleData>();
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [articleDate, setArticleDate] = useState<any>("");
-  const [userLogin, setUserLogin] = useState({
-    coin: 100000,
-    email: "a@a.com",
-    ticket: 0,
-    username: "aaaaaa",
-  });
+  const [userLogin, setUserLogin] = useState<any>([]);
 
   const { day, month, year } = getDayMonthYear(articleDate);
   const getArticlePrice = getPrice(day, month, year);
@@ -50,8 +45,10 @@ const ArticleDetail = () => {
         article?.web_url,
         article?.headline.main,
         getArticlePrice.value,
-        userLogin.coin,
-        userLogin.ticket
+        userLogin.data.coin,
+        userLogin.data.ticket,
+        userLogin.data.username,
+        userLogin.id
       );
     } catch (error) {
       console.log(error);

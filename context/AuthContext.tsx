@@ -10,7 +10,14 @@ import {
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
 import { user } from "@types";
-import { collection, addDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 type AuthContextType = {
   user: user | null;
@@ -95,11 +102,12 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     const snapshot = await getDocs(colRef);
 
     const docs = snapshot.docs.map((doc) => {
+      const id = doc.id;
       const data = doc.data();
 
-      return data;
+      return { data: data, id: id };
     });
-    return docs.filter((e) => e.email === email);
+    return docs.filter((e) => e.data.email === email);
   };
 
   const getUserArticle = async (email: string) => {
@@ -115,15 +123,18 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     return docs.filter((e) => e.email === email);
   };
 
-  const userBuyArticle = (
+  const userBuyArticle = async (
     email: string,
     title: string,
     link: string,
     price: number,
     coin: number,
-    ticket: number
+    ticket: number,
+    name: string,
+    id: string
   ) => {
-    addDoc(collection(firestore, "users"), {
+    const washingtonRef = doc(firestore, "users", id);
+    await updateDoc(washingtonRef, {
       email: email,
       username: name,
       coin: coin - price,

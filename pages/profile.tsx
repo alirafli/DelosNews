@@ -13,7 +13,7 @@ const Profile = () => {
     username: "aaaaaa",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [userArticle, setUserArticle] = useState([]);
+  const [userArticle, setUserArticle] = useState<any>([]);
   const { user, logout, getUserDataByEmail, getUserArticle } = useAuth();
 
   const getData = async () => {
@@ -21,11 +21,10 @@ const Profile = () => {
       const res = await getUserDataByEmail(user?.email);
       const fetchArticle = await getUserArticle(user?.email);
       setUserArticle(fetchArticle);
-      setUserLogin(res[0]);
+      setUserLogin(res[0].data);
     } catch (error) {
     } finally {
       setIsLoading(false);
-      console.log(userArticle);
     }
   };
 
@@ -48,7 +47,7 @@ const Profile = () => {
               <Text variant="title">Email</Text>
               <Text className="text-primary mb-8">{userLogin?.email}</Text>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col" onClick={() => console.log(userLogin)}>
               <Text>Coin</Text>
               <Text className="text-primary mb-8">
                 {userLogin?.coin?.toLocaleString("en-US")}
@@ -80,14 +79,20 @@ const Profile = () => {
             </thead>
             <tbody>
               {userArticle
-                ? userArticle.map((data, key) => {
+                ? userArticle.map((data: any, key: number) => {
                     return (
                       <tr key={key}>
                         <td className="border-2 p-1 border-primary ">
                           {data.link}
                         </td>
                         <td className="border-2 p-1 border-primary">
-                          <a href={data.title} target={"_blank"} className="text-primary-dark">{data.title}</a>
+                          <a
+                            href={data.title}
+                            target={"_blank"}
+                            className="text-primary-dark"
+                          >
+                            {data.title}
+                          </a>
                         </td>
                       </tr>
                     );
