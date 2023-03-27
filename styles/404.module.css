@@ -1,0 +1,3 @@
+.container {
+  @apply pt-16 min-h-screen flex justify-center items-center flex-col;
+}

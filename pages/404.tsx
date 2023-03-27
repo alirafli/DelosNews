@@ -1,9 +1,23 @@
 import Image from "next/image";
 import NOTFOUND from "@assets/images/404.svg";
-import { Text } from "@components/elements";
+import { Meta, Text } from "@components/elements";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import styles from "@styles/404.module.css";
+
+
 const NotFoundPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
+  }, [router]);
+
   return (
-    <div className="pt-16 min-h-screen flex justify-center items-center flex-col">
+    <div className={styles.container}>
+      <Meta subTitle="404 Not Found!" />
       <Image
         alt="jumbotron"
         src={NOTFOUND}
