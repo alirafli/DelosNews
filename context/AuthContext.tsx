@@ -6,7 +6,6 @@ import {
   signOut,
   UserCredential,
   updateProfile,
-  getAuth,
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
 import { user } from "@types";
@@ -14,7 +13,6 @@ import {
   collection,
   addDoc,
   doc,
-  getDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";

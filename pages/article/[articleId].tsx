@@ -61,6 +61,7 @@ const ArticleDetail = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchArticleDetail(uri);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uri]);
 
   if (isLoading) return <h1 className="pt-28 min-h-screen">loading...</h1>;
