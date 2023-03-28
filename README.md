@@ -32,4 +32,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### access [https://www.delosnews.site/](https://www.delosnews.site/) if you want to see the result!
 
-thank you!
+#
+## Tech Stack
+```
+Frontend
+  - NextJs
+
+Database
+  - Firebase
+
+Design System
+- Tailwind
+```
+
+Thank you!
