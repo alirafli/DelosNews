@@ -50,11 +50,11 @@ const ArticleDetail = () => {
         userLogin.data.username,
         userLogin.id
       );
+      router.push("/profile");
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
-      router.push("/profile");
     }
   };
 

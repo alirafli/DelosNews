@@ -4,11 +4,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  UserCredential,
   updateProfile,
 } from "firebase/auth";
 import { auth, firestore } from "../config/firebase";
-import { user } from "@types";
+import { AuthContextType, AuthProps, user } from "@types";
 import {
   collection,
   addDoc,
@@ -16,25 +15,6 @@ import {
   getDocs,
   updateDoc,
 } from "firebase/firestore";
-
-type AuthContextType = {
-  user: user | null;
-  login: (email: string, password: string) => Promise<UserCredential | void>;
-  register: (
-    email: string,
-    password: string,
-    userName: string
-  ) => Promise<UserCredential | void>;
-  logout: () => Promise<UserCredential | void>;
-  addUserDocument?: any;
-  userBuyArticle?: any;
-  getUserDataByEmail?: any;
-  getUserArticle?: any;
-};
-
-type AuthProps = {
-  children: React.ReactNode;
-};
 
 const AuthContext = createContext<AuthContextType>({
   user: {
@@ -131,6 +111,8 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     name: string,
     id: string
   ) => {
+    if (coin - price <= 0) return alert('not enough coin!');
+
     const washingtonRef = doc(firestore, "users", id);
     await updateDoc(washingtonRef, {
       email: email,
@@ -146,7 +128,11 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     });
   };
 
-  const register = (email: string, password: string, userName: string) => {
+  const register = async (
+    email: string,
+    password: string,
+    userName: string
+  ) => {
     return createUserWithEmailAndPassword(auth, email, password).then(
       (User) => {
         updateProfile(User.user, {
