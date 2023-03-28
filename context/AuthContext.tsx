@@ -31,6 +31,7 @@ const AuthContext = createContext<AuthContextType>({
   userBuyArticle: () => {},
   getUserDataByEmail: () => Promise.resolve(),
   getUserArticle: () => Promise.resolve(),
+  getUserPrize: () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -42,6 +43,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     email: "",
     coin: 0,
     ticket: 0,
+    isGet50: false,
   });
   const [isLoading, setIsLoading] = useState<Boolean>(true);
 
@@ -54,6 +56,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
           email: User.email,
           coin: 100000,
           ticket: 0,
+          isGet50: false,
         });
       } else {
         setUser(null);
@@ -71,6 +74,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
       username: name,
       coin: 100000,
       ticket: 0,
+      isGet50: false,
     });
   };
 
@@ -111,10 +115,10 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     name: string,
     id: string
   ) => {
-    if (coin - price <= 0) return alert('not enough coin!');
+    if (coin - price <= 0) return alert("not enough coin!");
 
-    const washingtonRef = doc(firestore, "users", id);
-    await updateDoc(washingtonRef, {
+    const userDoc = doc(firestore, "users", id);
+    await updateDoc(userDoc, {
       email: email,
       username: name,
       coin: coin - price,
@@ -126,6 +130,37 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
       title: title,
       email: email,
     });
+  };
+
+  const getUserPrize = async (
+    type: string,
+    key: number,
+    value: number,
+    id: string,
+    ticket: number,
+    coin: number
+  ) => {
+    let data = {};
+    if (type === "coin") {
+      if (key === 1) {
+        data = { coin: coin + value, isGet50: true, ticket: ticket - 1 };
+      } else {
+        data = {
+          coin: coin + value,
+          ticket: ticket - 1,
+        };
+      }
+    }
+    if (type === "ticket") {
+      if (key === 3) {
+        data = {
+          ticket: ticket - 1,
+        };
+      }
+    }
+    const userDoc = doc(firestore, "users", id);
+    await updateDoc(userDoc, data);
+    return data;
   };
 
   const register = async (
@@ -162,6 +197,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
         userBuyArticle,
         getUserDataByEmail,
         getUserArticle,
+        getUserPrize,
       }}
     >
       {isLoading ? null : children}

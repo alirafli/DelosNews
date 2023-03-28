@@ -14,6 +14,7 @@ export type AuthContextType = {
   userBuyArticle?: any;
   getUserDataByEmail?: any;
   getUserArticle?: any;
+  getUserPrize?: any;
 };
 
 export type AuthProps = {

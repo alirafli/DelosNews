@@ -5,4 +5,5 @@ export type user = {
   password?: string;
   coin?: number | undefined;
   ticket?: number | undefined;
+  isGet50?: boolean;
 };
