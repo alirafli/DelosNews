@@ -37,7 +37,6 @@ const Register = () => {
       setisLoading(false);
     }
 
-    console.log(values);
   };
 
   return (

@@ -115,7 +115,7 @@ export const AuthContextProvider = ({ children }: AuthProps) => {
     name: string,
     id: string
   ) => {
-    if (coin - price <= 0) return alert("not enough coin!");
+    if (coin - price < 0) return alert("not enough coin!");
 
     const userDoc = doc(firestore, "users", id);
     await updateDoc(userDoc, {

@@ -25,12 +25,10 @@ const Login: FC = () => {
       await login(values.email, values.password);
       router.push("/");
     } catch (error) {
-      console.log(error);
+      alert(error);
     } finally {
       setisLoading(false);
     }
-
-    // console.log(values);
   };
 
   return (

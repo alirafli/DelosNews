@@ -69,7 +69,7 @@ const LuckyDraw = () => {
         return alert("you can't get 50.000 twice");
       if (userLogin.data.ticket <= 0) return alert("you don't have any ticket");
 
-      const res = await getUserPrize(
+      await getUserPrize(
         resultDetail.type,
         resultDetail.key,
         resultDetail.value,
